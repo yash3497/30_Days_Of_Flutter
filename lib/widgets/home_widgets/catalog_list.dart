@@ -10,22 +10,43 @@ class CatalogList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: CatalogModel.items.length,
-      itemBuilder: (context, index) {
-        final catalog = CatalogModel.items[index];
-        return InkWell(
-          onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => HomeDetailPage(catalog: catalog))),
-          child: CatalogItem(
-            catalog: catalog,
-          ),
-        );
-      },
-    );
+    return !context.isMobile
+        ? GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, crossAxisSpacing: 20),
+            shrinkWrap: true,
+            itemCount: CatalogModel.items.length,
+            itemBuilder: (context, index) {
+              final catalog = CatalogModel.items[index];
+              return InkWell(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            HomeDetailPage(catalog: catalog))),
+                child: CatalogItem(
+                  catalog: catalog,
+                ),
+              );
+            },
+          )
+        : ListView.builder(
+            shrinkWrap: true,
+            itemCount: CatalogModel.items.length,
+            itemBuilder: (context, index) {
+              final catalog = CatalogModel.items[index];
+              return InkWell(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            HomeDetailPage(catalog: catalog))),
+                child: CatalogItem(
+                  catalog: catalog,
+                ),
+              );
+            },
+          );
   }
 }
 
@@ -38,14 +59,12 @@ class CatalogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VxBox(
-        child: Row(
-      children: [
-        Hero(
-            tag: Key(catalog.id.toString()),
-            child: CatalogImage(image: catalog.image)),
-        Expanded(
-            child: Column(
+    var children2 = [
+      Hero(
+          tag: Key(catalog.id.toString()),
+          child: CatalogImage(image: catalog.image)),
+      Expanded(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -63,8 +82,17 @@ class CatalogItem extends StatelessWidget {
               ],
             ).pOnly(right: 10)
           ],
-        ))
-      ],
-    )).color(context.cardColor).rounded.square(150).make().py16();
+        ).p(context.isMobile ? 0 : 16),
+      )
+    ];
+    return VxBox(
+      child: context.isMobile
+          ? Row(
+              children: children2,
+            )
+          : Column(
+              children: children2,
+            ),
+    ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }

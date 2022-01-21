@@ -33,11 +33,11 @@ class _HomePageState extends State<HomePage> {
 
   loadData() async {
     await Future.delayed(Duration(seconds: 2));
-    // final catalogJson =
-    //     await rootBundle.loadString("assets/files/catalog.json");
+    final catalogJson =
+        await rootBundle.loadString("assets/files/catalog.json");
 
-    final response = await http.get(Uri.parse(url));
-    final catalogJson = response.body;
+    // final response = await http.get(Uri.parse(url));
+    // final catalogJson = response.body;
     final decodeData = jsonDecode(catalogJson);
     var productData = decodeData["products"];
     CatalogModel.items =
