@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/widgets/home_widgets/add_to_cart.dart';
@@ -50,14 +52,11 @@ class HomeDetailPage extends StatelessWidget {
                       catalog.name.text.xl4.bold
                           .color(context.accentColor)
                           .make(),
-                      catalog.desc.text
-                          .textStyle(context.captionStyle)
-                          .xl
-                          .make(),
+                      catalog.desc.text.caption(context).xl.make(),
                       10.heightBox,
                       "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness."
                           .text
-                          .textStyle(context.captionStyle)
+                          .light
                           .make()
                           .p16()
                     ],

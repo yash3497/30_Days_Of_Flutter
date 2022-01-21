@@ -40,7 +40,7 @@ class _CartTotal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           VxConsumer(
-              builder: (context, _) {
+              builder: (context, store, _) {
                 return "\$${_cart.totalPrice}"
                     .text
                     .xl5
@@ -70,7 +70,7 @@ class _CartTotal extends StatelessWidget {
 class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    VxState.listen(context, to: [RemoveMutation]);
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Nothing to show".text.xl2.makeCentered()

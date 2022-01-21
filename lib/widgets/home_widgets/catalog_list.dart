@@ -50,7 +50,7 @@ class CatalogItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             catalog.name.text.lg.bold.color(context.accentColor).make(),
-            catalog.desc.text.textStyle(context.captionStyle).make(),
+            catalog.desc.text.caption(context).make(),
             10.heightBox,
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
