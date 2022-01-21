@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/models/catalog.dart';
 import 'package:flutter_catalog/widgets/home_widgets/add_to_cart.dart';
-import 'package:flutter_catalog/widgets/theme.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailPage extends StatelessWidget {
   final Item catalog;
   const HomeDetailPage({Key? key, required this.catalog})
+      // ignore: unnecessary_null_comparison
       : assert(catalog != null),
         super(key: key);
 

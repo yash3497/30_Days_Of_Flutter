@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+// ignore: camel_case_types
 class catalogHeader extends StatelessWidget {
   const catalogHeader({Key? key}) : super(key: key);
 
